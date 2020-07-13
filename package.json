@@ -1,19 +1,26 @@
 {
   "name": "blog_apps",
   "version": "1.0.0",
-  "description": "",
+  "description": "Bundle of front-end implementations of a blog.",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/demarcot/blog_apps.git"
   },
-  "author": "",
+  "author": "Thomas Demarco",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/demarcot/blog_apps/issues"
   },
-  "homepage": "https://github.com/demarcot/blog_apps#readme"
+  "homepage": "https://github.com/demarcot/blog_apps#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.23.1",
+    "jsonwebtoken": "^8.5.1",
+    "node": "14.4.0"
+  }
 }
