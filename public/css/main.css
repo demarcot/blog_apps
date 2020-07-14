@@ -1,0 +1,25 @@
+.accent-1 {
+    background-color: cadetblue;
+}
+
+.accent-2 {
+    background-color: darkcyan;
+}
+
+.flex-separated {
+    display: flex;
+    align-content: space-between;
+    justify-content: space-between;
+}
+
+.flex-centered {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.flex-vertical {
+    display: flex;
+    flex-flow: column;
+}
