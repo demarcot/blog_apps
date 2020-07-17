@@ -1,30 +1,18 @@
 import { NgModule } from "@angular/core";
 
 import { Routes, RouterModule } from '@angular/router';
-import { BlogListComponent } from './blog-list/blog-list.component';
-import { BlogPostComponent } from './blog-list/blog-post/blog-post.component';
 
-
-/*
-const appRoutes: Routes = [
-  {path: '', component: HomeComponent, pathMatch: 'full'},
-  {path: 'users', component: UsersComponent, children: [
-    {path: ':id/:name', component: UserComponent}
-  ]},
-  {path: 'servers', canActivateChild: [AuthGuard], component: ServersComponent, children: [
-    {path: ':id', component: ServerComponent},
-    {path: ':id/edit', component: EditServerComponent, canDeactivate: [CanDeactivateGuard]}
-  ]},
-  {path: 'not-found', component: PageNotFoundComponent},
-  {path: '**', redirectTo: '/not-found'}
-];
-*/
+import { LoginComponent } from './login/login.component';
+import { BlogListComponent } from './blogs/blog-list/blog-list.component';
+import { BlogPostComponent } from './blogs/blog-post/blog-post.component';
+import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
 
 const appRoutes: Routes = [
     {path: '', component: BlogListComponent, pathMatch: 'full'},
-    {path: 'blogs', component: BlogListComponent, children: [
-      {path: ':id', component: BlogPostComponent}
-    ]}
+    {path: 'login', component: LoginComponent},
+    {path: 'blogs/create', component: BlogCreateComponent},
+    {path: 'blogs/:id', component: BlogPostComponent},
+    {path: 'blogs', component: BlogListComponent}
 ];
 
 @NgModule({

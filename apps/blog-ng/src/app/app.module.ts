@@ -3,16 +3,21 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { APP_BASE_HREF } from '@angular/common';
-import { BlogListComponent } from './blog-list/blog-list.component';
-import { BlogPostComponent } from './blog-list/blog-post/blog-post.component';
+
 import { AppRoutingModule } from './app-routing.module';
-import { BlogsService } from './blogs.service';
+import { LoginComponent } from './login/login.component';
+import { BlogListComponent } from './blogs/blog-list/blog-list.component';
+import { BlogPostComponent } from './blogs/blog-post/blog-post.component';
+import { BlogsService } from './blogs/blogs.service';
+import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BlogListComponent,
-    BlogPostComponent
+    BlogPostComponent,
+    LoginComponent,
+    BlogCreateComponent
   ],
   imports: [
     BrowserModule,

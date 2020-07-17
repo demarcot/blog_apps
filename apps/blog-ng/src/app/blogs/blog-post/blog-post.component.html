@@ -1,0 +1,5 @@
+<div *ngIf="!blog"><h2>Blog entry does not exist.</h2></div>
+<div *ngIf="blog">
+    <h2>{{blog.title}}</h2>
+    <p>{{blog.body}}</p>
+</div>
