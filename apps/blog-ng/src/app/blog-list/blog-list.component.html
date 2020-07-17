@@ -1,0 +1,4 @@
+<div class="flex-vertical">
+    <button [routerLink]="['/blogs', b.id]" *ngFor="let b of blogs">{{b.title}}</button>
+</div>
+<div><router-outlet></router-outlet></div>
