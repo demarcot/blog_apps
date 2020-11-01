@@ -1,1 +1,17 @@
-<p>login works!</p>
+<mat-card>
+    <mat-card-content>
+        <form>
+            <mat-form-field class="maxWidth" >
+                <mat-label>Username</mat-label>
+                <input matInput #uname type="text">
+            </mat-form-field>
+            
+            <mat-form-field class="maxWidth" >
+                <mat-label>Password</mat-label>
+                <input matInput #pw type="password">
+
+                <button matSuffix mat-raised-button color=primary type="button" (click)="login(uname.value, pw.value)" >Login</button>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>

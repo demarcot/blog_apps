@@ -1,3 +1,3 @@
 <div class="flex-vertical">
-    <a [routerLink]="['/blogs', b.id]" routerLinkActive="active" *ngFor="let b of blogs">{{b.title}}</a>
+    <a mat-flat-button [routerLink]="['/blogs', b.id]" routerLinkActive="active" *ngFor="let b of getBlogs()">{{b.title}}</a>
 </div>

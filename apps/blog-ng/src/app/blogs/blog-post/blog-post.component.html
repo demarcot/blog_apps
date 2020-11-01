@@ -1,5 +1,6 @@
 <div *ngIf="!blog"><h2>Blog entry does not exist.</h2></div>
-<div *ngIf="blog">
-    <h2>{{blog.title}}</h2>
-    <p>{{blog.body}}</p>
-</div>
+
+<mat-card *ngIf="blog" >
+    <mat-card-title>{{blog.title}}</mat-card-title>
+    <mat-card-content>{{blog.body}}</mat-card-content>
+</mat-card>

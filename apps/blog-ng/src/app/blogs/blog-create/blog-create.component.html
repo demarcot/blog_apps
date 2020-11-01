@@ -1,1 +1,16 @@
-<p>blog-create works!</p>
+<mat-card>
+    <mat-card-content>
+        <form>
+            <mat-form-field maxWidth >
+                <mat-label>Title</mat-label>
+                <input matInput #title type="text" >
+            </mat-form-field>
+
+            <mat-form-field maxWidth >
+                <mat-label>Body</mat-label>
+                <input matInput #body type="text" >
+                <button mat-raised-button matSuffix color=primary type="button" (click)="createBlog(title.value, body.value)">Post</button>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Blog } from '../blog.model';
 import { BlogsService } from '../blogs.service';
+import { MockBlogsService } from '../blogs.service.mock';
 
 
 @Component({
@@ -9,12 +10,22 @@ import { BlogsService } from '../blogs.service';
   styleUrls: ['./blog-list.component.css']
 })
 export class BlogListComponent implements OnInit {
-  public blogs: Blog[];
+  private blogs: Blog[];
 
-  constructor(private blogsService: BlogsService) { }
+  // constructor(private blogsService: BlogsService) { }
+  constructor(private blogsService: MockBlogsService) {}
 
   ngOnInit(): void {
-    this.blogs = this.blogsService.getBlogs();
+    this.reloadBlogs()
   }
 
+  getBlogs()
+  {
+    return this.blogs;
+  }
+
+  reloadBlogs()
+  {
+    this.blogs = this.blogsService.getBlogs();
+  }
 }
