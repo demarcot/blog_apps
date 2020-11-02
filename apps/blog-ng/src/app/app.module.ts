@@ -21,6 +21,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
+import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { ErrorDialogComponent } from './error-dialog/error-dialog.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import {MatCardModule} from '@angular/material/card';
     BlogListComponent,
     BlogPostComponent,
     LoginComponent,
-    BlogCreateComponent
+    BlogCreateComponent,
+    ErrorDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -39,9 +42,10 @@ import {MatCardModule} from '@angular/material/card';
     MatInputModule,
     MatToolbarModule,
     MatFormFieldModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
-  providers: [BlogsService, LoginService, MockBlogsService],
+  providers: [BlogsService, LoginService, MockBlogsService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

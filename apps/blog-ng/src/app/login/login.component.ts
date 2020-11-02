@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
 import { LoginService } from './login.service';
 
 @Component({
@@ -8,15 +11,19 @@ import { LoginService } from './login.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private router: Router, private loginService: LoginService, private errorDialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  login(username: string, pw: string)
+  async login(username: string, pw: string)
   {
-    console.log("User logging in with ", username, " and ", pw);
-    this.loginService.login(username, pw);
+    let b: boolean = await this.loginService.login(username, pw);
+    if(!b) {
+      this.errorDialog.open(ErrorDialogComponent, {data: {title: "Login Error", content: "There was a problem logging in. Please try again."}});
+    } else {
+      this.router.navigate(['blogs']);
+    }
   }
 
 }
