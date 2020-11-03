@@ -1,3 +1,10 @@
-<div class="flex-vertical">
-    <a mat-flat-button [routerLink]="['/blogs', b.id]" routerLinkActive="active" *ngFor="let b of getBlogs()">{{b.title}}</a>
-</div>
+<mat-list>
+    <mat-list-item  [routerLink]="['/blogs', b.id]" routerLinkActive="active" *ngFor="let b of getBlogsPage()">{{b.title}}</mat-list-item>
+</mat-list>
+<mat-paginator 
+[length]="length"
+[pageSize]="pageSize"
+(page)="handlePageEvent($event)" >
+    
+</mat-paginator>
+
