@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+.filler {
+    flex: 1 1 auto;    
+}
+
+.spc {
+    margin-right: 1em;
+}
+
+.spc-sm {
+    margin-right: 0.5em;
+}

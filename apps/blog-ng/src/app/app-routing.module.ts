@@ -6,9 +6,12 @@ import { LoginComponent } from './login/login.component';
 import { BlogListComponent } from './blogs/blog-list/blog-list.component';
 import { BlogPostComponent } from './blogs/blog-post/blog-post.component';
 import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
+import { LandingComponent } from './landing/landing.component';
+import { AboutComponent } from './about/about.component';
 
 const appRoutes: Routes = [
-    {path: '', component: BlogListComponent, pathMatch: 'full'},
+    {path: '', component: LandingComponent, pathMatch: 'full'},
+    {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
     {path: 'blogs/create', component: BlogCreateComponent},
     {path: 'blogs/:id', component: BlogPostComponent},

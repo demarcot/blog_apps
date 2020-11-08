@@ -2,3 +2,16 @@
     display: flex;
     flex-flow: column;
 }
+
+.height-sm {
+    height: min-content;
+}
+
+.height-sm > * {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+.bi {
+    display: inline-block;
+}

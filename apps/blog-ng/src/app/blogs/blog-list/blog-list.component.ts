@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { LoginService } from 'src/app/login/login.service';
 import { Blog } from '../blog.model';
 import { BlogsService } from '../blogs.service';
 import { MockBlogsService } from '../blogs.service.mock';
@@ -18,7 +19,7 @@ export class BlogListComponent implements OnInit {
   public pageEvent: PageEvent;
 
   // constructor(private blogsService: BlogsService) { }
-  constructor(private blogsService: MockBlogsService) {}
+  constructor(private blogsService: MockBlogsService, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.reloadBlogs()
@@ -40,5 +41,9 @@ export class BlogListComponent implements OnInit {
 
   handlePageEvent(event: PageEvent) {
     this.blogsPage = this.blogs.slice(this.pageSize*event.pageIndex, (this.pageSize*event.pageIndex)+this.pageSize);
+  }
+
+  isLoggedIn(): boolean {
+    return this.loginService.isLoggedIn();
   }
 }

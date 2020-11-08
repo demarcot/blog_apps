@@ -1,14 +1,17 @@
-<mat-toolbar>
-    <span>TCD3</span>
-
+<mat-toolbar color="primary">
+    <span class="spc"><button mat-button routerLinkActive="active" [routerLink]="['/']">TCD3</button></span>
+    
+    <span>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" routerLinkActive="active" [routerLink]="['/blogs']">Blogs</button>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" routerLinkActive="active" [routerLink]="['/about']">About</button>
+    </span>
     <span class="filler"></span>
     
     <span>
-        <button mat-raised-button type="button" role="presentation" *ngIf="!isLoggedIn()" routerLinkActive="active" [routerLink]="['/login']">Login</button>
-        <button mat-raised-button type="button" role="presentation" *ngIf="isLoggedIn()" (click)="logout()" >Logout</button>
-        <button mat-raised-button type="button" role="presentation" *ngIf="isLoggedIn()" routerLinkActive="active" [routerLink]="['/blogs/create']">Create</button>
-        <button mat-raised-button  type="button" role="presentation" routerLinkActive="active" [routerLink]="['/blogs']">Blog List</button>
-        <a mat-raised-button color=primary href="/">Return Home</a>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="!isLoggedIn()" routerLinkActive="active" [routerLink]="['/login']">Login</button>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="isLoggedIn()" (click)="logout()" >Logout</button>
+        
+        <a class="spc-sm" mat-raised-button  color=primary href="/">Return Home</a>
     </span>
 </mat-toolbar>
 

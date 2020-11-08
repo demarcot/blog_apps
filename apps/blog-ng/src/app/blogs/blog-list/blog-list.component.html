@@ -1,10 +1,23 @@
-<mat-list>
-    <mat-list-item  [routerLink]="['/blogs', b.id]" routerLinkActive="active" *ngFor="let b of getBlogsPage()">{{b.title}}</mat-list-item>
-</mat-list>
-<mat-paginator 
-[length]="length"
-[pageSize]="pageSize"
-(page)="handlePageEvent($event)" >
-    
+<mat-paginator [length]="length" [pageSize]="pageSize" (page)="handlePageEvent($event)">
 </mat-paginator>
 
+<mat-list>
+    <mat-list-item *ngFor="let b of getBlogsPage()">
+        <button mat-icon-button class="material-icons" *ngIf="true">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button class="material-icons" *ngIf="true">
+            <mat-icon>delete</mat-icon>
+        </button>
+        <button mat-raised-button [routerLink]="['/blogs', b.id]" routerLinkActive="active">{{b.title}}</button>
+    </mat-list-item>
+</mat-list>
+
+<mat-toolbar *ngIf="isLoggedIn()" class="height-sm">
+    <button mat-button routerLinkActive="active" [routerLink]="['/blogs/create']" >
+        <button mat-icon-button type="button" role="presentation" >
+            <mat-icon>add</mat-icon>
+        </button>
+        <p class="bi" >Create...</p>
+    </button>
+</mat-toolbar>

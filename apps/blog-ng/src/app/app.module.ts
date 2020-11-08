@@ -23,7 +23,10 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatCardModule} from '@angular/material/card';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatListModule} from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
+import { LandingComponent } from './landing/landing.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -33,7 +36,9 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     BlogPostComponent,
     LoginComponent,
     BlogCreateComponent,
-    ErrorDialogComponent
+    ErrorDialogComponent,
+    LandingComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
     MatCardModule,
     MatDialogModule,
     MatPaginatorModule,
-    MatListModule
+    MatListModule,
+    MatIconModule
   ],
   providers: [BlogsService, LoginService, MockBlogsService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
