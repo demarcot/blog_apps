@@ -1,0 +1,11 @@
+.f {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.f > * {
+    padding-left: 2em;
+    padding-right: 2em;
+}

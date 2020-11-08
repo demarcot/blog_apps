@@ -27,6 +27,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dialog';
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
+import { RestPickerComponent } from './rest-picker/rest-picker.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { AboutComponent } from './about/about.component';
     BlogCreateComponent,
     ErrorDialogComponent,
     LandingComponent,
-    AboutComponent
+    AboutComponent,
+    RestPickerComponent
   ],
   imports: [
     BrowserModule,
