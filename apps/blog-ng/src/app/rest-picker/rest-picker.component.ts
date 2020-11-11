@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
     styleUrls: ["./rest-picker.component.css"]
 })
 export class RestPickerComponent implements OnInit {
-    private rests: string[] = ["Bertucci's", "Cibbo", "Canova", "Davio's", "Kyoto", "Sabatino's", "Trattoria Della Nona", "Trattoria De Romana"];
+    private rests: string[] = ["Bertucci's", "Cafe Assisi", "Cibbo", "Canova", "Davio's", "Fresh Catch", "Kyoto", "Sabatino's", "Trattoria Della Nona", "Trattoria De Romana"];
 
     public rest: string;
 
