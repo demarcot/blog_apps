@@ -57,7 +57,7 @@ import { RestPickerComponent } from './rest-picker/rest-picker.component';
     MatListModule,
     MatIconModule
   ],
-  providers: [BlogsService, LoginService, MockBlogsService, {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
+  providers: [BlogsService, LoginService,  {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: false}}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

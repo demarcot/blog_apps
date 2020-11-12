@@ -14,8 +14,7 @@ import { LoginService } from 'src/app/login/login.service';
 })
 export class BlogCreateComponent implements OnInit {
 
-  // constructor(private blogsService: BlogsService) { }
-  constructor(private router: Router, private blogsService: MockBlogsService, private loginService: LoginService, private errorDialog: MatDialog) {}
+  constructor(private router: Router, private blogsService: BlogsService, private loginService: LoginService, private errorDialog: MatDialog) {}
 
   ngOnInit(): void {
   }
@@ -25,7 +24,7 @@ export class BlogCreateComponent implements OnInit {
     if(!title || !body || !this.loginService.isLoggedIn()) {
       const d = this.errorDialog.open(ErrorDialogComponent, { data: { title: "Error Creating Blog", content: "Provide a Title and a Body."}});
     } else {
-      this.blogsService.createBlog(new Blog("0", title, body, "tom", 0));
+      this.blogsService.createBlog(new Blog(title, body, this.loginService.getUser(), 0));
       this.router.navigate(['blogs']);
 
     }

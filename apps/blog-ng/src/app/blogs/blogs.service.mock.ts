@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Blog } from './blog.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import {Schema} from 'mongoose';
 
 @Injectable()
 export class MockBlogsService {
     private blogs: Blog[] = [
-        new Blog("1", "hello, bloggers!", "this is the body", "tom", 1),
-        new Blog("2", "apology for previous blog", "i will be better", "tom", 3)
+        new Blog("hello, bloggers!", "this is the body", "tom", 1),
+        new Blog("apology for previous blog", "i will be better", "tom", 3)
     ];
 
     constructor(private http: HttpClient)
@@ -26,7 +27,7 @@ export class MockBlogsService {
     getBlog(id: string) {
         const blog = this.blogs.find(
             (b) => {
-                return b.id === id;
+                return b._id === (new Schema.Types.ObjectId(id))['path'];
             }
         );
         return blog;
@@ -41,7 +42,7 @@ export class MockBlogsService {
         */
        if(true || localStorage.jwt)
        {
-           blog.id = (this.blogs.length+1).toString();
+           blog._id = (new Schema.Types.ObjectId((this.blogs.length+1).toString()))['path'];
            this.blogs.push(blog);
        }
     }

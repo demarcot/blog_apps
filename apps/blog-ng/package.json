@@ -23,7 +23,9 @@
     "@angular/platform-browser-dynamic": "~9.1.7",
     "@angular/router": "~9.1.7",
     "@auth0/angular-jwt": "^5.0.1",
+    "@types/mongoose": "^5.10.0",
     "kafka-node": "^5.0.0",
+    "mongoose": "^5.10.13",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"

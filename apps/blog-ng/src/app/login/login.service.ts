@@ -24,7 +24,7 @@ export class LoginService {
             this.role = "admin";
             return Promise.resolve(true);
         }
-         return this.http.post<{jwt: string}>(environment.apiUrl, {'username': username, 'password': pw}).toPromise().then((tkn) => {
+         return this.http.post<{jwt: string}>(environment.apiUrl + environment.pub.loginOp, {'username': username, 'password': pw}).toPromise().then((tkn) => {
             if(tkn && tkn.jwt) {
                 localStorage.jwt = tkn.jwt;
                 
@@ -43,7 +43,26 @@ export class LoginService {
         });
     }
 
-    logout() {
+    verify(): Promise<boolean> {
+        if(!localStorage.getItem('jwt')) {
+            return Promise.resolve(false);
+        } else {
+            this.http.get(environment.apiUrl + environment.pub.verifyOp , {headers: {'Authorization': 'Bearer ' + localStorage.getItem('jwt')}, observe: 'response'}).toPromise().then((res) => {
+                if(res.ok) {
+                    return true;
+                } else {
+                    this.logout();
+                    return false;
+                }
+            }).catch((reason) => {
+                console.log("Could not verify user: ", reason);
+                this.logout();
+                return false;
+            });
+        }
+    }
+
+    logout(): void {
         if(localStorage.jwt) {
             localStorage.removeItem('jwt');
         }
@@ -57,6 +76,14 @@ export class LoginService {
             return false;
         } else {
             return localStorage.jwt && this.username && this.role ? true : false;
+        }
+    }
+
+    getUser(): string {
+        if(this.username) {
+            return this.username;
+        } else {
+            return "";
         }
     }
 }

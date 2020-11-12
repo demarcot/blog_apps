@@ -19,7 +19,7 @@ export class BlogListComponent implements OnInit {
   public pageEvent: PageEvent;
 
   // constructor(private blogsService: BlogsService) { }
-  constructor(private blogsService: MockBlogsService, private loginService: LoginService) {}
+  constructor(private blogsService: BlogsService, private loginService: LoginService) {}
 
   ngOnInit(): void {
     this.reloadBlogs()

@@ -15,7 +15,7 @@ export class BlogPostComponent implements OnInit {
   /* constructor(private blogsService: BlogsService,
     private route: ActivatedRoute) { } */
 
-    constructor(private blogsService: MockBlogsService, private route: ActivatedRoute) {}
+    constructor(private blogsService: BlogsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     const id = this.route.snapshot.params['id'];
