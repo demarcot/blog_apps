@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Blog } from './blog.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class BlogsService {
-    private blogs: Blog[] = [];
+    private blogs: Blog[];
 
     constructor(private http: HttpClient)
     {
@@ -16,8 +17,13 @@ export class BlogsService {
         this.reloadBlogs();
         return this.blogs;
     }
+    
+    getBlogsFromServer(): Observable<Blog[]> {
 
-    reloadBlogs() {
+        return this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp);
+    }
+
+    reloadBlogs(): Blog[] {
         if(localStorage.jwt)
         {
             this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp).subscribe(blgs => {

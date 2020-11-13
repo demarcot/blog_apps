@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8001/api/',
+  apiUrl: 'http://192.168.86.42:8001/api/',
   pub: {
     verifyOp: 'public/verify',
     loginOp: 'public/login',
