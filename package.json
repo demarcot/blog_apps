@@ -2,10 +2,10 @@
   "name": "blog_apps",
   "version": "1.0.0",
   "description": "Bundle of front-end implementations of a blog.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node index.js",
-    "build-ng": "cd apps/blog-ng && ng build",
+    "start": "node server.js",
+    "build-ng": "cd client && ng build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
