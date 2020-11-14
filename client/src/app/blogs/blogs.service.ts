@@ -24,12 +24,9 @@ export class BlogsService {
     }
 
     reloadBlogs(): Blog[] {
-        if(localStorage.jwt)
-        {
             this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp).subscribe(blgs => {
                 this.blogs = blgs;
             });
-        }
         
         return this.blogs;
     }
@@ -37,7 +34,7 @@ export class BlogsService {
     getBlog(id: string) {
         const blog = this.blogs.find(
             (b) => {
-                return b._id === id;
+                return b.id === id;
             }
         );
         return blog;

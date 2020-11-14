@@ -27,7 +27,7 @@ export class MockBlogsService {
     getBlog(id: string) {
         const blog = this.blogs.find(
             (b) => {
-                return b._id === (new Schema.Types.ObjectId(id))['path'];
+                return b.id === (new Schema.Types.ObjectId(id))['path'];
             }
         );
         return blog;
@@ -42,7 +42,7 @@ export class MockBlogsService {
         */
        if(true || localStorage.jwt)
        {
-           blog._id = (new Schema.Types.ObjectId((this.blogs.length+1).toString()))['path'];
+           blog.id = (new Schema.Types.ObjectId((this.blogs.length+1).toString()))['path'];
            this.blogs.push(blog);
        }
     }

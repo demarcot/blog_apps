@@ -16,7 +16,7 @@ export class BlogListComponent implements OnInit {
   private blogsPage: Blog[];
   
   public length: number = 0;
-  public pageSize: number = 2;
+  public pageSize: number = 10;
   public pageEvent: PageEvent;
 
   constructor(private blogsService: BlogsService, private loginService: LoginService) {}
