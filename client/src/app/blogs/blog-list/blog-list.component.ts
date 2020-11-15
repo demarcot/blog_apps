@@ -49,4 +49,12 @@ export class BlogListComponent implements OnInit {
   isLoggedIn(): boolean {
     return this.loginService.isLoggedIn();
   }
+
+  isAuthor(blog: Blog): boolean {
+    if(this.isLoggedIn() && this.loginService.getUser() === blog.author) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }

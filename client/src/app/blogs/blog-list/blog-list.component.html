@@ -4,7 +4,7 @@
 <mat-nav-list>
     <mat-list-item class="height-sm" *ngFor="let b of getBlogsPage()">
         <div class="flex-container flex-row flex-grow fillv" >
-            <div class="flex-container flex-row flex-jst-start" *ngIf="isLoggedIn()" >
+            <div class="flex-container flex-row flex-jst-start" *ngIf="isAuthor(b)" >
                 <button mat-button class="material-icons" >
                     <mat-icon>edit</mat-icon>
                 </button>

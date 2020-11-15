@@ -18,12 +18,8 @@ export class LoginService {
         if(!username || !pw) {
             console.log("Username or PW was not provided.");
             return Promise.resolve(false);
-        } else if (username==="admin" && pw==="admin") {
-            localStorage.jwt = "adminJwt";
-            this.username = "admin";
-            this.role = "admin";
-            return Promise.resolve(true);
         }
+
          return this.http.post<{jwt: string}>(environment.apiUrl + environment.pub.loginOp, {'username': username, 'password': pw}).toPromise().then((tkn) => {
             if(tkn && tkn.jwt) {
                 localStorage.jwt = tkn.jwt;
@@ -71,12 +67,18 @@ export class LoginService {
     }
 
     isLoggedIn(): boolean {
-        if(localStorage.jwt && this.helper.isTokenExpired(localStorage.jwt)) {
+        try {
+            if(localStorage.jwt && this.helper.isTokenExpired(localStorage.jwt)) {
+                this.logout();
+                return false;
+            } else {
+                return localStorage.jwt && this.username && this.role ? true : false;
+            }
+        } catch(e) {
+            console.error("Problem verifying login: ", e);
             this.logout();
-            return false;
-        } else {
-            return localStorage.jwt && this.username && this.role ? true : false;
         }
+        return false;
     }
 
     getUser(): string {
