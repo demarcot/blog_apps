@@ -28,6 +28,7 @@ import {MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS} from '@angular/material/dia
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
 import { RestPickerComponent } from './rest-picker/rest-picker.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { RestPickerComponent } from './rest-picker/rest-picker.component';
     BlogListComponent,
     BlogPostComponent,
     LoginComponent,
+    RegisterComponent,
     BlogCreateComponent,
     ErrorDialogComponent,
     LandingComponent,

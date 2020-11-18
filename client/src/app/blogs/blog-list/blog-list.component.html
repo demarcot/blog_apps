@@ -3,26 +3,37 @@
 
 <mat-nav-list>
     <mat-list-item class="height-sm" *ngFor="let b of getBlogsPage()">
-        <div class="flex-container flex-row flex-grow fillv" >
-            <div class="flex-container flex-row flex-jst-start" *ngIf="isAuthor(b)" >
-                <button mat-button class="material-icons" >
+        <div class="flex-container flex-row flex-grow fillv">
+            <div class="flex-container flex-row flex-jst-start" *ngIf="isAuthor(b)">
+                <button mat-button class="material-icons">
                     <mat-icon>edit</mat-icon>
                 </button>
-                <button mat-button class="material-icons" >
+                <button mat-button class="material-icons">
                     <mat-icon>delete</mat-icon>
                 </button>
             </div>
 
-            <div class="flex-container flex-row flex-grow-2 flex-spc"  [routerLink]="['/blogs', b.id]" routerLinkActive="active">
-                    <span class="bold">{{b.title}}</span> <span>By: {{b.author}} Likes: {{b.likes}}</span>
+            <div class="flex-container flex-row flex-grow-2 flex-spc" [routerLink]="['/blogs', b.id]"
+                routerLinkActive="active">
+                <span class="bold">{{b.title}}</span> 
+                <span>
+                    <span>By: {{b.author}}</span> 
+                    <span>
+                        <button mat-button
+                            (click)="likeBlog(b)">
+                            <mat-icon>star_outline</mat-icon>
+                        </button>
+                        <span>{{b.likes}}</span>
+                    </span>
+                </span>
             </div>
         </div>
     </mat-list-item>
 </mat-nav-list>
 
 <mat-toolbar *ngIf="isLoggedIn()" class="height-sm">
-    <button mat-button routerLinkActive="active" [routerLink]="['/blogs/create']" >
+    <button mat-button routerLinkActive="active" [routerLink]="['/blogs/create']">
         <mat-icon>add</mat-icon>
-        <p class="bi" >Create...</p>
+        <p class="bi">Create...</p>
     </button>
 </mat-toolbar>

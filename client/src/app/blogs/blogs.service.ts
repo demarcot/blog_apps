@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Blog } from './blog.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 
@@ -57,5 +57,17 @@ export class BlogsService {
     {
         let index = this.blogs.indexOf(this.getBlog(id));
         this.blogs.splice(index, 1);
+    }
+
+    likeBlog(blog: Blog) {
+        if(localStorage.jwt)
+       {
+           this.http.put(environment.apiUrl + environment.priv.blogsLikeOp+`/${blog.id}`, {}, {headers: new HttpHeaders({
+           'Content-Type': 'application/json',
+           'Authorization': 'Bearer ' + localStorage.jwt
+           })}).subscribe(resp => {
+               this.blogs = this.reloadBlogs();
+           });
+       }
     }
 }

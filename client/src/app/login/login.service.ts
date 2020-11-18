@@ -39,6 +39,28 @@ export class LoginService {
         });
     }
 
+    register(username: string, pw: string, pw2: string): Promise<boolean> {
+        if(!username || !pw || !pw2) {
+            console.log("Username or PW was not provided.");
+            return Promise.resolve(false);
+        } else if(pw !== pw2) {
+            console.log("Passwords provided were not the same.");
+            return Promise.resolve(false);
+        }
+
+         return this.http.post(environment.apiUrl + environment.pub.registerOp, {'username': username, 'password': pw}, {observe: 'response'}).toPromise().then((res) => {
+            if(res && res.ok) {
+                return true;
+            } else {
+                console.log("Registration failed.");
+                return false;
+            }
+        }).catch((reason) => {
+            console.log("Error in registration: ", reason);
+            return false;
+        });
+    }
+
     verify(): Promise<boolean> {
         if(!localStorage.getItem('jwt')) {
             return Promise.resolve(false);

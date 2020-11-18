@@ -42,6 +42,10 @@ export class BlogListComponent implements OnInit {
     
   }
 
+  likeBlog(blog: Blog) {
+    this.blogsService.likeBlog(blog);
+  }
+
   handlePageEvent(event: PageEvent) {
     this.blogsPage = this.blogs.slice(this.pageSize*event.pageIndex, (this.pageSize*event.pageIndex)+this.pageSize);
   }

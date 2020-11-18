@@ -8,11 +8,13 @@ import { BlogPostComponent } from './blogs/blog-post/blog-post.component';
 import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
+import { RegisterComponent } from './register/register.component';
 
 const appRoutes: Routes = [
     {path: '', component: LandingComponent, pathMatch: 'full'},
     {path: 'about', component: AboutComponent},
     {path: 'login', component: LoginComponent},
+    {path: 'register', component: RegisterComponent},
     {path: 'blogs/create', component: BlogCreateComponent},
     {path: 'blogs/:id', component: BlogPostComponent},
     {path: 'blogs', component: BlogListComponent}

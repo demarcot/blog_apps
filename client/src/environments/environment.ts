@@ -8,10 +8,12 @@ export const environment = {
   pub: {
     verifyOp: 'public/verify',
     loginOp: 'public/login',
-    blogsOp: 'public/blogs'
+    blogsOp: 'public/blogs',
+    registerOp: 'public/register'
   },
   priv: {
-    blogsOp: 'blogs'
+    blogsOp: 'blogs',
+    blogsLikeOp: 'blogs/likes'
   }
 };
 

@@ -1,0 +1,22 @@
+<mat-card>
+    <mat-card-content>
+        <form>
+            <mat-form-field class="maxWidth" >
+                <mat-label>Username</mat-label>
+                <input matInput #uname type="text">
+            </mat-form-field>
+            
+            <mat-form-field class="maxWidth" >
+                <mat-label>Password</mat-label>
+                <input matInput #pw type="password">
+            </mat-form-field>
+
+            <mat-form-field class="maxWidth" >
+                <mat-label>Confirm Password</mat-label>
+                <input matInput #pw2 type="password">
+            </mat-form-field>
+            
+            <button matSuffix mat-raised-button color=primary type="button" (click)="register(uname.value, pw.value, pw2.value)" >Register</button>
+        </form>
+    </mat-card-content>
+</mat-card>
