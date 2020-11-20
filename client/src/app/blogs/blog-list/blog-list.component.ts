@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { LoginService } from 'src/app/login/login.service';
 import { Blog } from '../blog.model';
@@ -19,7 +20,7 @@ export class BlogListComponent implements OnInit {
   public pageSize: number = 10;
   public pageEvent: PageEvent;
 
-  constructor(private blogsService: BlogsService, private loginService: LoginService) {}
+  constructor(private blogsService: BlogsService, private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.reloadBlogs()
@@ -42,8 +43,13 @@ export class BlogListComponent implements OnInit {
     
   }
 
+  navToBlog(blog: Blog) {
+    this.router.navigate(['/blogs', blog.id]);
+  }
+
   likeBlog(blog: Blog) {
     this.blogsService.likeBlog(blog);
+    this.reloadBlogs();
   }
 
   handlePageEvent(event: PageEvent) {

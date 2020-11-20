@@ -45,6 +45,10 @@
     padding-right: 0.5em;
 }
 
+.height-sm {
+    height: 5em;
+}
+
 /* Text stuff */
 .bold {
     font-weight: bold;

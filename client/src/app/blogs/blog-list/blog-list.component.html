@@ -13,20 +13,20 @@
                 </button>
             </div>
 
-            <div class="flex-container flex-row flex-grow-2 flex-spc" [routerLink]="['/blogs', b.id]"
-                routerLinkActive="active">
+            <div class="flex-container flex-row flex-grow-2 flex-spc" (click)="navToBlog(b)" >
                 <span class="bold">{{b.title}}</span> 
-                <span>
+                <span >
                     <span>By: {{b.author}}</span> 
                     <span>
-                        <button mat-button
-                            (click)="likeBlog(b)">
+                        <button mat-button [disabled]="!isLoggedIn()"
+                            (click)="$event.stopPropagation(); likeBlog(b);">
                             <mat-icon>star_outline</mat-icon>
                         </button>
-                        <span>{{b.likes}}</span>
+                        <span style="display: inline-block; min-width: 2em; max-width: 2em;">{{b.likes}}</span>
                     </span>
                 </span>
             </div>
+            <img style=" height: 100%; max-width: 48px; height: auto; width: auto; " src="assets/me.jpg" alt="">
         </div>
     </mat-list-item>
 </mat-nav-list>
