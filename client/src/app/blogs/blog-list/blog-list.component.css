@@ -53,3 +53,19 @@
 .bold {
     font-weight: bold;
 }
+
+.item {
+    background-color: #FAFAFA;
+}
+
+.item:hover, .bg-rounded:hover {
+    background-color: #DDDDDD; 
+    transition: all .5s ease;
+    cursor: pointer;
+}
+
+.bg-rounded {
+    border-radius: 15%;
+    background-color: #eeeeee;
+}
+
