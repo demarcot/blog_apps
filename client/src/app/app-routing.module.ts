@@ -9,6 +9,7 @@ import { BlogCreateComponent } from './blogs/blog-create/blog-create.component';
 import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
 import { RegisterComponent } from './register/register.component';
+import { BlogUpdateComponent } from './blogs/blog-update/blog-update.component';
 
 const appRoutes: Routes = [
     {path: '', component: LandingComponent, pathMatch: 'full'},
@@ -17,6 +18,7 @@ const appRoutes: Routes = [
     {path: 'register', component: RegisterComponent},
     {path: 'blogs/create', component: BlogCreateComponent},
     {path: 'blogs/:id', component: BlogPostComponent},
+    {path: 'blogs/edit/:id', component: BlogUpdateComponent},
     {path: 'blogs', component: BlogListComponent}
 ];
 

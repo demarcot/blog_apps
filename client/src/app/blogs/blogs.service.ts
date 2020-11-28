@@ -53,10 +53,16 @@ export class BlogsService {
        }
     }
 
-    deleteBlog(id: string)
+    deleteBlog(blog: Blog)
     {
-        let index = this.blogs.indexOf(this.getBlog(id));
-        this.blogs.splice(index, 1);
+       if(localStorage.jwt) {
+            this.http.delete(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, {headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.jwt
+                })}).subscribe(resp => {
+                    this.blogs = this.reloadBlogs();
+                });
+       }
     }
 
     likeBlog(blog: Blog) {
@@ -69,5 +75,16 @@ export class BlogsService {
                this.blogs = this.reloadBlogs();
            });
        }
+    }
+
+    updateBlog(blog: Blog) {
+        if(localStorage.jwt) {
+            this.http.post(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, blog, {headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + localStorage.jwt
+                })}).subscribe(resp => {
+                    this.blogs = this.reloadBlogs();
+                });
+        }
     }
 }

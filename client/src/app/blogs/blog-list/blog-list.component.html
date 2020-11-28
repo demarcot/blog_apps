@@ -7,10 +7,10 @@
             <div class="flex-container flex-row flex-jst-start" >
                 <mat-icon>chevron_right</mat-icon>
                 <div class="bg-rounded" *ngIf="isAuthor(b)" >
-                    <button mat-icon-button class="material-icons" >
+                    <button mat-icon-button class="material-icons" (click)="navToBlogEdit(b)" >
                         <mat-icon>edit</mat-icon>
                     </button>
-                    <button mat-icon-button class="material-icons" >
+                    <button mat-icon-button class="material-icons" (click)="deleteBlog(b)" >
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>

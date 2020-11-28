@@ -47,9 +47,17 @@ export class BlogListComponent implements OnInit {
     this.router.navigate(['/blogs', blog.id]);
   }
 
+  navToBlogEdit(blog: Blog) {
+    this.router.navigate(['/blogs/edit', blog.id], {state: {blog: blog}});
+  }
+
   likeBlog(blog: Blog) {
     this.blogsService.likeBlog(blog);
     this.reloadBlogs();
+  }
+
+  deleteBlog(blog: Blog) {
+    this.blogsService.deleteBlog(blog);
   }
 
   handlePageEvent(event: PageEvent) {

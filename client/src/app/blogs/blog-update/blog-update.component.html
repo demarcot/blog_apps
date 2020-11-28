@@ -1,0 +1,18 @@
+<mat-card>
+    <mat-card-content>
+        <form>
+            <mat-form-field maxWidth >
+                <mat-label>Title</mat-label>
+                <input matInput name="title" [(ngModel)]="blog.title" type="text" >
+            </mat-form-field>
+
+            <mat-form-field maxWidth >
+                <mat-label>Body</mat-label>
+                <textarea matInput name="body" [(ngModel)]="blog.body" type="text" ></textarea>
+            </mat-form-field>
+            <button mat-raised-button matSuffix color=primary type="button" (click)="updateBlog()" >Post</button>
+        </form>
+    </mat-card-content>
+</mat-card>
+
+

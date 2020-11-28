@@ -13,7 +13,7 @@ export const environment = {
   },
   priv: {
     blogsOp: 'blogs',
-    blogsLikeOp: 'blogs/likes'
+    blogsLikeOp: 'blogs/likes',
   }
 };
 

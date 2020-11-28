@@ -29,6 +29,8 @@ import { LandingComponent } from './landing/landing.component';
 import { AboutComponent } from './about/about.component';
 import { RestPickerComponent } from './rest-picker/rest-picker.component';
 import { RegisterComponent } from './register/register.component';
+import { BlogUpdateComponent } from './blogs/blog-update/blog-update.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -39,6 +41,7 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     RegisterComponent,
     BlogCreateComponent,
+    BlogUpdateComponent,
     ErrorDialogComponent,
     LandingComponent,
     AboutComponent,
@@ -48,6 +51,7 @@ import { RegisterComponent } from './register/register.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
     MatButtonModule,
     MatInputModule,
