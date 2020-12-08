@@ -35,12 +35,11 @@ export class BlogListComponent implements OnInit {
   }
 
   reloadBlogs() {
-    this.blogsService.getBlogsFromServer().subscribe((b) => {
-      this.blogs = b;
-      this.length = b.length;
-      this.blogsPage = b.slice(0, this.pageSize);
+    this.blogsService.reloadBlogs().then(() => {
+      this.blogs = this.blogsService.getBlogs();
+      this.length = this.blogs.length;
+      this.blogsPage = this.blogs.slice(0, this.pageSize);
     });
-    
   }
 
   navToBlog(blog: Blog) {
@@ -52,12 +51,11 @@ export class BlogListComponent implements OnInit {
   }
 
   likeBlog(blog: Blog) {
-    this.blogsService.likeBlog(blog);
-    this.reloadBlogs();
+    this.blogsService.likeBlog(blog).then(() => this.reloadBlogs());
   }
 
   deleteBlog(blog: Blog) {
-    this.blogsService.deleteBlog(blog);
+    this.blogsService.deleteBlog(blog).then(() => this.reloadBlogs());
   }
 
   handlePageEvent(event: PageEvent) {
