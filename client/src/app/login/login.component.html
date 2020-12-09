@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <form>
+        <form (keyup.enter)="login(uname.value, pw.value)" >
             <mat-form-field class="maxWidth" >
                 <mat-label>Username</mat-label>
                 <input matInput #uname type="text">
@@ -9,9 +9,9 @@
             <mat-form-field class="maxWidth" >
                 <mat-label>Password</mat-label>
                 <input matInput #pw type="password">
-
-                <button matSuffix mat-raised-button color=primary type="button" (click)="login(uname.value, pw.value)" >Login</button>
             </mat-form-field>
+
+            <button matSuffix mat-raised-button color=primary type="button" (click)="login(uname.value, pw.value)" >Login</button>
         </form>
     </mat-card-content>
 </mat-card>

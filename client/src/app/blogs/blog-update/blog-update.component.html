@@ -1,9 +1,9 @@
 <mat-card>
     <mat-card-content>
-        <form>
+        <form (keyup.enter)="updateBlog()">
             <mat-form-field maxWidth >
                 <mat-label>Title</mat-label>
-                <input matInput name="title" [(ngModel)]="blog.title" type="text" >
+                <input matInput #title name="title" [(ngModel)]="blog.title" type="text" >
             </mat-form-field>
 
             <mat-form-field maxWidth >

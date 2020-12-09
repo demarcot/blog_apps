@@ -1,6 +1,6 @@
 <mat-card>
     <mat-card-content>
-        <form>
+        <form (keyup.enter)="register(uname.value, pw.value, pw2.value)">
             <mat-form-field class="maxWidth" >
                 <mat-label>Username</mat-label>
                 <input matInput #uname type="text">
