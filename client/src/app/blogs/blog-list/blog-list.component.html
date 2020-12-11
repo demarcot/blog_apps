@@ -21,7 +21,7 @@
                 <span >
                     <span>By: {{b.author}}</span> 
                     <span>
-                        <button mat-button [disabled]="!isLoggedIn()"
+                        <button mat-button [disabled]="!loggedIn"
                             (click)="$event.stopPropagation(); likeBlog(b);">
                             <mat-icon>star_outline</mat-icon>
                         </button>
@@ -34,7 +34,7 @@
     </div>
 </div>
 
-<mat-toolbar *ngIf="isLoggedIn()" class="height-sm">
+<mat-toolbar *ngIf="loggedIn" class="height-sm">
     <button mat-button routerLinkActive="active" [routerLink]="['/blogs/create']">
         <mat-icon>add</mat-icon>
         <p class="bi">Create...</p>

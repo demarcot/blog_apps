@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { LoginService } from './login/login.service';
 
 @Component({
@@ -6,13 +7,22 @@ import { LoginService } from './login/login.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   title = 'blog-ng';
+  loggedIn = false;
+
+  private loginSub: Subscription;
 
   constructor(private loginService: LoginService) {}
 
-  isLoggedIn(): boolean {
-    return this.loginService.isLoggedIn();
+  ngOnInit(): void {
+    this.loginSub = this.loginService.getLoggedInObs().subscribe(obs => {
+      this.loggedIn = obs;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.loginSub.unsubscribe();
   }
 
   logout() {

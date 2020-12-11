@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { LoginService } from 'src/app/login/login.service';
 import { Blog } from '../blog.model';
 import { BlogsService } from '../blogs.service';
-import { MockBlogsService } from '../blogs.service.mock';
 
 @Component({
   selector: 'app-blog-list',
   templateUrl: './blog-list.component.html',
   styleUrls: ['./blog-list.component.css']
 })
-export class BlogListComponent implements OnInit {
+export class BlogListComponent implements OnInit, OnDestroy {
   private blogs: Blog[];
   private blogsPage: Blog[];
   
@@ -20,10 +19,20 @@ export class BlogListComponent implements OnInit {
   public pageSize: number = 10;
   public pageEvent: PageEvent;
 
+  loggedIn: boolean = false;
+  private loginSub: Subscription;
+
   constructor(private blogsService: BlogsService, private loginService: LoginService, private router: Router) {}
 
   ngOnInit(): void {
     this.reloadBlogs()
+    this.loginSub = this.loginService.getLoggedInObs().subscribe(obs => {
+      this.loggedIn = obs;
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.loginSub.unsubscribe();
   }
 
   getBlogs(): Blog[] {
@@ -62,12 +71,8 @@ export class BlogListComponent implements OnInit {
     this.blogsPage = this.blogs.slice(this.pageSize*event.pageIndex, (this.pageSize*event.pageIndex)+this.pageSize);
   }
 
-  isLoggedIn(): boolean {
-    return this.loginService.isLoggedIn();
-  }
-
   isAuthor(blog: Blog): boolean {
-    if(this.isLoggedIn() && this.loginService.getUser() === blog.author) {
+    if(this.loggedIn && this.loginService.getUser() === blog.author) {
       return true;
     } else {
       return false;

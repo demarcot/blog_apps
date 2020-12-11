@@ -8,9 +8,9 @@
     <span class="filler"></span>
     
     <span>
-        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="!isLoggedIn()" routerLinkActive="active" [routerLink]="['/login']">Login</button>
-        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="!isLoggedIn()" routerLinkActive="active" [routerLink]="['/register']">Register</button>
-        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="isLoggedIn()" (click)="logout()" >Logout</button>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="!loggedIn" routerLinkActive="active" [routerLink]="['/login']">Login</button>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="!loggedIn" routerLinkActive="active" [routerLink]="['/register']">Register</button>
+        <button class="spc-sm" mat-raised-button  type="button" role="presentation" *ngIf="loggedIn" (click)="logout()" >Logout</button>
     </span>
 </mat-toolbar>
 
