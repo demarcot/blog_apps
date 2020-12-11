@@ -1,6 +1,6 @@
-import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from "@angular/core";
+import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/error-dialog/error-dialog.component';
 import { LoginService } from 'src/app/login/login.service';
@@ -12,23 +12,27 @@ import { BlogsService } from '../blogs.service';
     templateUrl: "./blog-update.component.html",
     styleUrls: ["./blog-update.component.css"]
 })
-export class BlogUpdateComponent implements OnInit, AfterViewInit {
+export class BlogUpdateComponent implements OnInit, OnDestroy, AfterViewInit {
     @Input() blog: Blog;
+    private blogSub: Subscription;
 
     @ViewChild('title') titleElement: ElementRef;
 
     private isLoggedIn: boolean = false;
     private loginSub: Subscription;
 
-    constructor(private loginService: LoginService, private blogsService: BlogsService, private router: Router, private errorDialog: MatDialog) {
+    constructor(private loginService: LoginService, private blogsService: BlogsService, private router: Router, private errorDialog: MatDialog, private route: ActivatedRoute) {
 
     }
 
     ngOnInit(): void {
+        const id = this.route.snapshot.params['id'];
         this.loginSub = this.loginService.getLoggedInObs().subscribe(obs => {
             this.isLoggedIn = obs;
         });
-        this.blog = history.state.blog;
+        this.blogSub = this.blogsService.getBlogsObs().subscribe(obs => {
+            this.blog = obs.find((v) => v.id == id);
+        });
     }
 
     ngAfterViewInit(): void {
@@ -36,6 +40,11 @@ export class BlogUpdateComponent implements OnInit, AfterViewInit {
         setTimeout(() => {
             this.titleElement.nativeElement.focus();
         }, 50);
+    }
+
+    ngOnDestroy(): void {
+        this.loginSub.unsubscribe();
+        this.blogSub.unsubscribe();
     }
 
     updateBlog(): void {

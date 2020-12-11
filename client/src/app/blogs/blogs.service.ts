@@ -2,34 +2,32 @@ import { Injectable } from '@angular/core';
 import { Blog } from './blog.model';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http'
 import { environment } from 'src/environments/environment';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable()
 export class BlogsService {
-    private blogs: Blog[];
+    //Time to do some shit
+    private blogsSub: BehaviorSubject<Blog[]> = new BehaviorSubject<Blog[]>([]);
+    private blogsObs: Observable<Blog[]> = this.blogsSub.asObservable();
+    
+    //private blogs: Blog[];
 
     constructor(private http: HttpClient)
     {
         this.reloadBlogs();
     }
 
-    getBlogs() {
-        return this.blogs;
+    getBlogsObs() {
+        return this.blogsObs;
     }
-    
-    /*
-    getBlogsFromServer(): Observable<Blog[]> {
 
-        return this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp);
-    }
-    */
-
-    async reloadBlogs() {
-        await this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp).toPromise().then(blgs => {
-            this.blogs = blgs;
+    reloadBlogs() {
+        this.http.get<Blog[]>(environment.apiUrl + environment.pub.blogsOp).toPromise().then(blgs => {
+            this.blogsSub.next(blgs);
         });
     }
 
+    /*
     getBlog(id: string) {
         const blog = this.blogs.find(
             (b) => {
@@ -38,51 +36,52 @@ export class BlogsService {
         );
         return blog;
     }
+    */
 
-    async createBlog(blog: Blog)
+    createBlog(blog: Blog)
     {
        if(localStorage.jwt)
        {
-           await this.http.post(environment.apiUrl + environment.priv.blogsOp, blog, {headers: new HttpHeaders({
+           this.http.post(environment.apiUrl + environment.priv.blogsOp, blog, {headers: new HttpHeaders({
            'Content-Type': 'application/json',
            'Authorization': 'Bearer ' + localStorage.jwt
-           })}).toPromise().then(async resp => {
-               await this.reloadBlogs();
+           })}).toPromise().then(resp => {
+               this.reloadBlogs();
            });
        }
     }
 
-    async deleteBlog(blog: Blog)
+    deleteBlog(blog: Blog)
     {
        if(localStorage.jwt) {
-            await this.http.delete(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, {headers: new HttpHeaders({
+            this.http.delete(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, {headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.jwt
-                })}).toPromise().then(async resp => {
-                    await this.reloadBlogs();
+                })}).toPromise().then(resp => {
+                    this.reloadBlogs();
                 });
        }
     }
 
-    async likeBlog(blog: Blog) {
+    likeBlog(blog: Blog) {
         if(localStorage.jwt)
        {
-           await this.http.put(environment.apiUrl + environment.priv.blogsLikeOp+`/${blog.id}`, {}, {headers: new HttpHeaders({
+           this.http.put(environment.apiUrl + environment.priv.blogsLikeOp+`/${blog.id}`, {}, {headers: new HttpHeaders({
            'Content-Type': 'application/json',
            'Authorization': 'Bearer ' + localStorage.jwt
-           })}).toPromise().then(async resp => {
-               await this.reloadBlogs();
+           })}).toPromise().then(resp => {
+               this.reloadBlogs();
            });
        }
     }
 
-    async updateBlog(blog: Blog) {
+    updateBlog(blog: Blog) {
         if(localStorage.jwt) {
-            await this.http.post(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, blog, {headers: new HttpHeaders({
+            this.http.post(environment.apiUrl + environment.priv.blogsOp + `/${blog.id}`, blog, {headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + localStorage.jwt
-                })}).toPromise().then(async resp => {
-                    await this.reloadBlogs();
+                })}).toPromise().then(resp => {
+                    this.reloadBlogs();
                 });
         }
     }

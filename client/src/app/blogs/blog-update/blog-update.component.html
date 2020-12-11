@@ -1,16 +1,16 @@
 <mat-card>
     <mat-card-content>
-        <form (keyup.enter)="updateBlog()">
-            <mat-form-field maxWidth >
+        <form>
+            <mat-form-field class="maxWidth" >
                 <mat-label>Title</mat-label>
-                <input matInput #title name="title" [(ngModel)]="blog.title" type="text" >
+                <input matInput #title name="title" [(ngModel)]="blog.title" >
             </mat-form-field>
 
-            <mat-form-field maxWidth >
+            <mat-form-field class="maxWidth" >
                 <mat-label>Body</mat-label>
-                <textarea matInput name="body" [(ngModel)]="blog.body" type="text" ></textarea>
+                <textarea matInput name="body" [(ngModel)]="blog.body" ></textarea>
             </mat-form-field>
-            <button mat-raised-button matSuffix color=primary type="button" (click)="updateBlog()" >Post</button>
+            <button mat-raised-button matSuffix color=primary type="button" (keyup.enter)="updateBlog()" (click)="updateBlog()" >Post</button>
         </form>
     </mat-card-content>
 </mat-card>

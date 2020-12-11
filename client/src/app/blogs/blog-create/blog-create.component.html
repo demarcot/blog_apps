@@ -1,17 +1,17 @@
 <mat-card>
     <mat-card-content>
-        <form (keyup.enter)="createBlog(title.value, body.value)">
-            <mat-form-field maxWidth >
+        <form>
+            <mat-form-field class="maxWidth" >
                 <mat-label>Title</mat-label>
                 <input matInput #title type="text" >
             </mat-form-field>
 
-            <mat-form-field maxWidth >
+            <mat-form-field class="maxWidth" >
                 <mat-label>Body</mat-label>
-                <input matInput #body type="text" >
+                <textarea matInput #body type="text" ></textarea>
             </mat-form-field>
             
-            <button mat-raised-button matSuffix color=primary type="button" (click)="createBlog(title.value, body.value)">Post</button>
+            <button mat-raised-button matSuffix color=primary type="button" (keyup.enter)="createBlog(title.value, body.value)" (click)="createBlog(title.value, body.value)">Post</button>
         </form>
     </mat-card-content>
 </mat-card>
